@@ -1,0 +1,65 @@
+[debug] [2023-01-02T05:44:03.789Z] ----------------------------------------------------------------------
+[debug] [2023-01-02T05:44:03.794Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\hellb\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2023-01-02T05:44:03.794Z] CLI Version:   11.19.0
+[debug] [2023-01-02T05:44:03.795Z] Platform:      win32
+[debug] [2023-01-02T05:44:03.795Z] Node Version:  v19.3.0
+[debug] [2023-01-02T05:44:03.795Z] Time:          Mon Jan 02 2023 11:14:03 GMT+0530 (India Standard Time)
+[debug] [2023-01-02T05:44:03.795Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-01-02T05:44:03.906Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-01-02T05:44:03.907Z] > authorizing via signed-in user (itsyourhellboy41785@gmail.com)
+[debug] [2023-01-02T05:44:03.907Z] [iam] checking project optionchain-7dca0 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2023-01-02T05:44:03.910Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/optionchain-7dca0:testIamPermissions [none]
+[debug] [2023-01-02T05:44:03.911Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/optionchain-7dca0:testIamPermissions x-goog-quota-user=projects/optionchain-7dca0
+[debug] [2023-01-02T05:44:03.911Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/optionchain-7dca0:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-01-02T05:44:05.516Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/optionchain-7dca0:testIamPermissions 200
+[debug] [2023-01-02T05:44:05.517Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/optionchain-7dca0:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-01-02T05:44:05.519Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/optionchain-7dca0 [none]
+[debug] [2023-01-02T05:44:05.976Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/optionchain-7dca0 200
+[debug] [2023-01-02T05:44:05.977Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/optionchain-7dca0 {"projectId":"optionchain-7dca0","projectNumber":"13169593160","displayName":"optionchain","name":"projects/optionchain-7dca0","resources":{"hostingSite":"optionchain-7dca0"},"state":"ACTIVE","etag":"1_dfceef85-4e6f-47e4-a87e-e67e6f0325b3"}
+[debug] [2023-01-02T05:44:23.646Z] Error: EPERM: operation not permitted, open 'D:\code\option_chain\.next\trace'
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2023-01-02T05:45:04.852Z] ----------------------------------------------------------------------
+[debug] [2023-01-02T05:45:04.856Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\hellb\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2023-01-02T05:45:04.857Z] CLI Version:   11.19.0
+[debug] [2023-01-02T05:45:04.857Z] Platform:      win32
+[debug] [2023-01-02T05:45:04.857Z] Node Version:  v19.3.0
+[debug] [2023-01-02T05:45:04.858Z] Time:          Mon Jan 02 2023 11:15:04 GMT+0530 (India Standard Time)
+[debug] [2023-01-02T05:45:04.858Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-01-02T05:45:04.969Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-01-02T05:45:04.971Z] > authorizing via signed-in user (itsyourhellboy41785@gmail.com)
+[debug] [2023-01-02T05:45:04.971Z] [iam] checking project optionchain-7dca0 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2023-01-02T05:45:04.974Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/optionchain-7dca0:testIamPermissions [none]
+[debug] [2023-01-02T05:45:04.975Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/optionchain-7dca0:testIamPermissions x-goog-quota-user=projects/optionchain-7dca0
+[debug] [2023-01-02T05:45:04.975Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/optionchain-7dca0:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-01-02T05:45:07.462Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/optionchain-7dca0:testIamPermissions 200
+[debug] [2023-01-02T05:45:07.463Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/optionchain-7dca0:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-01-02T05:45:07.465Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/optionchain-7dca0 [none]
+[debug] [2023-01-02T05:45:07.926Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/optionchain-7dca0 200
+[debug] [2023-01-02T05:45:07.928Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/optionchain-7dca0 {"projectId":"optionchain-7dca0","projectNumber":"13169593160","displayName":"optionchain","name":"projects/optionchain-7dca0","resources":{"hostingSite":"optionchain-7dca0"},"state":"ACTIVE","etag":"1_dfceef85-4e6f-47e4-a87e-e67e6f0325b3"}
+[debug] [2023-01-02T05:47:20.803Z] ----------------------------------------------------------------------
+[debug] [2023-01-02T05:47:20.807Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\hellb\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2023-01-02T05:47:20.808Z] CLI Version:   11.19.0
+[debug] [2023-01-02T05:47:20.808Z] Platform:      win32
+[debug] [2023-01-02T05:47:20.808Z] Node Version:  v19.3.0
+[debug] [2023-01-02T05:47:20.808Z] Time:          Mon Jan 02 2023 11:17:20 GMT+0530 (India Standard Time)
+[debug] [2023-01-02T05:47:20.809Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-01-02T05:47:20.923Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-01-02T05:47:20.923Z] > authorizing via signed-in user (itsyourhellboy41785@gmail.com)
+[debug] [2023-01-02T05:47:20.924Z] [iam] checking project optionchain-7dca0 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2023-01-02T05:47:20.926Z] > refreshing access token with scopes: []
+[debug] [2023-01-02T05:47:20.931Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2023-01-02T05:47:20.931Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-01-02T05:47:21.347Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2023-01-02T05:47:21.348Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2023-01-02T05:47:21.372Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/optionchain-7dca0:testIamPermissions [none]
+[debug] [2023-01-02T05:47:21.373Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/optionchain-7dca0:testIamPermissions x-goog-quota-user=projects/optionchain-7dca0
+[debug] [2023-01-02T05:47:21.374Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/optionchain-7dca0:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-01-02T05:47:22.882Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/optionchain-7dca0:testIamPermissions 200
+[debug] [2023-01-02T05:47:22.882Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/optionchain-7dca0:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-01-02T05:47:22.885Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/optionchain-7dca0 [none]
+[debug] [2023-01-02T05:47:23.364Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/optionchain-7dca0 200
+[debug] [2023-01-02T05:47:23.364Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/optionchain-7dca0 {"projectId":"optionchain-7dca0","projectNumber":"13169593160","displayName":"optionchain","name":"projects/optionchain-7dca0","resources":{"hostingSite":"optionchain-7dca0"},"state":"ACTIVE","etag":"1_dfceef85-4e6f-47e4-a87e-e67e6f0325b3"}

@@ -90,10 +90,11 @@ const Table = ({ filtered }) => {
           <tr>
             <th>No.</th>
             <th>ExpiryDate</th>
-            <th>OI</th>
+            <th>CALL OI</th>
             <th>CALL ChangeInOI</th>
             <th>CALL Last TradedPrice</th>
             <th>StrikePrice</th>
+            <th>Put OI</th>
             <th>PUT ChangeInOI</th>
             <th>PUT Last TradedPrice</th>
           </tr>
@@ -107,10 +108,11 @@ const Table = ({ filtered }) => {
                 <tr className="text-sm">
                   <th>{(no = no + 1)}</th>
                   <td>{put.PE?.expiryDate}</td>
-                  <td>{put.PE?.openInterest}</td>
+                  <td>{put.CE?.openInterest}</td>
                   <td>{put.CE?.changeinOpenInterest}</td>
                   <td>{put.CE?.lastPrice}</td>
                   <td>{put.PE?.strikePrice}</td>
+                  <td>{put.PE?.openInterest}</td>
                   <td>{put.PE?.changeinOpenInterest}</td>
                   <td>{put.PE?.lastPrice}</td>
                 </tr>
