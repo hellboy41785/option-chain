@@ -97,6 +97,8 @@ const Table = ({ filtered, total }) => {
           >
             <li className="text-sm ">
               <a>Change In OI <span className="text-red-600">X</span>  LTP</a>
+              <a>CE = {(weightCallData).toFixed(3)}</a>
+              <a>PE = {(weightPutData).toFixed(3)}</a>
             </li>
           </ul>
         </div>
@@ -110,6 +112,8 @@ const Table = ({ filtered, total }) => {
           >
             <li className="text-sm ">
               <a> OI <span className="text-red-600">X</span> LTP</a>
+              <a>CE = {(weightedCallData).toFixed(3)}</a>
+              <a>PE = {(weightedPutData).toFixed(3)}</a>
             </li>
           </ul>
         </div>
