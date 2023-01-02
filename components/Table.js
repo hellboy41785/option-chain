@@ -152,11 +152,12 @@ const Table = ({ filtered, total }) => {
           <tr className="text-sm font-bold text-center">
             <th>Total</th>
             <td></td>
-            <td>CALL OI = {total?.CE?.totOI}</td>
+            <td>{total?.CE?.totOI}</td>
+            <td>{callChange}</td>
             <td></td>
             <td></td>
-            <td></td>
-            <td>PUT OI = {total?.PE?.totOI}</td>
+            <td>{total?.PE?.totOI}</td>
+            <td>{putChange}</td>
           </tr>
           {/* <!-- row 2 --> */}
         </tbody>
