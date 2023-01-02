@@ -20,7 +20,7 @@ const Table = ({ filtered, total }) => {
   // Weighted Intra DayPcr
 
   const weightCall = filtered?.map(
-    (item, index) => item.CE.changeinOpenInterest * item.CE.lastPrice
+    (item, index) => item.CE.changeinOpenInterest === undefined ? 0 : item.CE.changeinOpenInterest * item.CE.lastPrice
   );
 
   const weightCallData = weightCall.reduce((acc, current) => acc + current, 0);
@@ -97,8 +97,8 @@ const Table = ({ filtered, total }) => {
           >
             <li className="text-sm ">
               <a>Change In OI <span className="text-red-600">X</span>  LTP</a>
-              <a>CE = {(weightCallData).toFixed(3)}</a>
-              <a>PE = {(weightPutData).toFixed(3)}</a>
+              <a className="text-green-500">CE = {(weightCallData).toFixed(3)}</a>
+              <a className="text-red-600">PE = {(weightPutData).toFixed(3)}</a>
             </li>
           </ul>
         </div>
@@ -112,13 +112,13 @@ const Table = ({ filtered, total }) => {
           >
             <li className="text-sm ">
               <a> OI <span className="text-red-600">X</span> LTP</a>
-              <a>CE = {(weightedCallData).toFixed(3)}</a>
-              <a>PE = {(weightedPutData).toFixed(3)}</a>
+              <a className="text-green-500">CE = {(weightedCallData).toFixed(3)}</a>
+              <a className="text-red-600">PE = {(weightedPutData).toFixed(3)}</a>
             </li>
           </ul>
         </div>
       </div>
-      <table className="table w-full mt-6">
+      <table className="table table-compact w-full mt-6 ">
         {/* <!-- head --> */}
         <thead>
           <tr className="text-center">
@@ -133,17 +133,17 @@ const Table = ({ filtered, total }) => {
             <th>PUT Last TradedPrice</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="">
           {/* <!-- row 1 --> */}
 
           {filtered?.map((put, index) => {
             return (
               <Fragment key={index}>
-                <tr className="text-sm text-center">
+                <tr className="text-sm text-center border border-gray-700">
                   <th>{(no = no + 1)}</th>
                   <td>{put.PE?.expiryDate}</td>
                   <td>{put.CE?.openInterest}</td>
-                  <td>{put.CE?.changeinOpenInterest}</td>
+                  <td>{put.CE?.changeinOpenInterest} </td>
                   <td>{put.CE?.lastPrice}</td>
                   <td>{put.PE?.strikePrice}</td>
                   <td>{put.PE?.openInterest}</td>

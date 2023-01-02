@@ -4,6 +4,7 @@ import Table from '../components/Table'
 
 import { useOptionChainStore } from '../query/useOptionChainStore';
 import Head from 'next/head';
+import Loader from '../components/Loader';
 
 export default function Home() {
   const contracts = useOptionChainStore((state) => state.contracts);
@@ -11,7 +12,7 @@ export default function Home() {
   const {data,isLoading} = useOptionChain(contracts)
   
   if(isLoading)
-  return <h1>Loading....</h1>
+  return <Loader/>
   
 //  const records = data.records.data
  const filtered = data.filtered.data
