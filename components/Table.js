@@ -1,7 +1,7 @@
 import { Fragment, useState } from "react";
 import { useOptionChainStore } from "../query/useOptionChainStore";
 
-const Table = ({ filtered }) => {
+const Table = ({ filtered, total }) => {
   const contracts = useOptionChainStore((state) => state.contracts);
   const addContracts = useOptionChainStore((state) => state.addContracts);
 
@@ -56,10 +56,10 @@ const Table = ({ filtered }) => {
   const weightedPCR = (weightedPutData / weightedCallData).toFixed(2);
 
   // console.log();
-  const handleChange =(event)=>{
-    event.preventDefault()
-    addContracts(event.target.value)
-  }
+  const handleChange = (event) => {
+    event.preventDefault();
+    addContracts(event.target.value);
+  };
 
   let no = 0;
   return (
@@ -74,20 +74,50 @@ const Table = ({ filtered }) => {
           <option>BANKNIFTY</option>
           <option>FINNIFTY</option>
         </select>
-        <button className="btn btn-outline">
+        <div className="dropdown dropdown-hover">
+          <label tabIndex={0} className="btn m-1">
           Intra DayPcr = {intraDayPCR}
-        </button>
-        <button className="btn btn-outline">
+          </label>
+          <ul
+            tabIndex={0}
+            className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 opacity-30"
+          >
+            <li className="text-sm ">
+              <a>Change In OI</a>
+            </li>
+          </ul>
+        </div>
+        <div className="dropdown dropdown-hover">
+          <label tabIndex={0} className="btn m-1">
           Weighted Intra DayPcr = {weightAge}
-        </button>
-        <button className="btn btn-outline">
+          </label>
+          <ul
+            tabIndex={0}
+            className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 opacity-30"
+          >
+            <li className="text-sm ">
+              <a>Change In OI <span className="text-red-600">X</span>  LTP</a>
+            </li>
+          </ul>
+        </div>
+        <div className="dropdown dropdown-hover">
+          <label tabIndex={0} className="btn m-1">
           Weighted Pcr = {weightedPCR}
-        </button>
+          </label>
+          <ul
+            tabIndex={0}
+            className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 opacity-30"
+          >
+            <li className="text-sm ">
+              <a> OI <span className="text-red-600">X</span> LTP</a>
+            </li>
+          </ul>
+        </div>
       </div>
       <table className="table w-full mt-6">
         {/* <!-- head --> */}
         <thead>
-          <tr>
+          <tr className="text-center">
             <th>No.</th>
             <th>ExpiryDate</th>
             <th>CALL OI</th>
@@ -105,7 +135,7 @@ const Table = ({ filtered }) => {
           {filtered?.map((put, index) => {
             return (
               <Fragment key={index}>
-                <tr className="text-sm">
+                <tr className="text-sm text-center">
                   <th>{(no = no + 1)}</th>
                   <td>{put.PE?.expiryDate}</td>
                   <td>{put.CE?.openInterest}</td>
@@ -119,12 +149,15 @@ const Table = ({ filtered }) => {
               </Fragment>
             );
           })}
-          {/* <tr>
-          <th>1</th>
-          <td>Cy Ganderton</td>
-          <td>Quality Control Specialist</td>
-          <td>Blue</td>
-        </tr> */}
+          <tr className="text-sm font-bold text-center">
+            <th>Total</th>
+            <td></td>
+            <td>CALL OI = {total?.CE?.totOI}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>PUT OI = {total?.PE?.totOI}</td>
+          </tr>
           {/* <!-- row 2 --> */}
         </tbody>
       </table>

@@ -14,11 +14,12 @@ export default function Home() {
   
 //  const records = data.records.data
  const filtered = data.filtered.data
+ const total = data.filtered
  
   return (
     <>
       <div className="text-4xl">
-        <Table filtered={filtered}/>
+        <Table filtered={filtered} total={total}/>
       </div>
     </>
   )
