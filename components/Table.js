@@ -20,7 +20,7 @@ const Table = ({ filtered, total }) => {
   // Weighted Intra DayPcr
 
   const weightCall = filtered?.map(
-    (item, index) => item.CE.changeinOpenInterest === undefined ? 0 : item.CE.changeinOpenInterest * item.CE.lastPrice
+    (item, index) => item.CE.changeinOpenInterest === undefined ? "" : item.CE.changeinOpenInterest * item.CE.lastPrice
   );
 
   const weightCallData = weightCall.reduce((acc, current) => acc + current, 0);
@@ -55,7 +55,29 @@ const Table = ({ filtered, total }) => {
 
   const weightedPCR = (weightedPutData / weightedCallData).toFixed(2);
 
-  // console.log();
+  //Volume Weighted PCR
+  
+  const volCall = filtered?.map(
+    (item, index) => item.CE.totalTradedVolume * item.CE.lastPrice
+  );
+  
+  const volWeightedCall = volCall.reduce(
+    (acc, current) => acc + current,
+    0
+  );
+  const volPut = filtered?.map(
+    (item, index) => item.PE.totalTradedVolume * item.PE.lastPrice
+  );
+  
+  const volWeightedPut = volPut.reduce(
+    (acc, current) => acc + current,
+    0
+  );
+  
+  const volWeightedPCR = (volWeightedPut/volWeightedCall).toFixed(2)
+
+  
+  
   const handleChange = (event) => {
     event.preventDefault();
     addContracts(event.target.value);
@@ -75,12 +97,12 @@ const Table = ({ filtered, total }) => {
           <option>FINNIFTY</option>
         </select>
         <div className="dropdown dropdown-hover">
-          <label tabIndex={0} className="btn m-1">
+          <label tabIndex={0} className="m-1 btn">
           Intra DayPcr = {intraDayPCR}
           </label>
           <ul
             tabIndex={0}
-            className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 opacity-30"
+            className="p-2 shadow dropdown-content menu bg-base-100 rounded-box w-52 opacity-30"
           >
             <li className="text-sm ">
               <a>Change In OI</a>
@@ -88,12 +110,12 @@ const Table = ({ filtered, total }) => {
           </ul>
         </div>
         <div className="dropdown dropdown-hover">
-          <label tabIndex={0} className="btn m-1">
+          <label tabIndex={0} className="m-1 btn">
           Weighted Intra DayPcr = {weightAge}
           </label>
           <ul
             tabIndex={0}
-            className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 opacity-30"
+            className="p-2 shadow dropdown-content menu bg-base-100 rounded-box w-52 opacity-30"
           >
             <li className="text-sm ">
               <a>Change In OI <span className="text-red-600">X</span>  LTP</a>
@@ -103,12 +125,27 @@ const Table = ({ filtered, total }) => {
           </ul>
         </div>
         <div className="dropdown dropdown-hover">
-          <label tabIndex={0} className="btn m-1">
+          <label tabIndex={0} className="m-1 btn">
+          Volume Weighted PCR = {volWeightedPCR}
+          </label>
+          <ul
+            tabIndex={0}
+            className="p-2 shadow dropdown-content menu bg-base-100 rounded-box w-52 opacity-30"
+          >
+            <li className="text-sm ">
+              <a> Volume <span className="text-red-600">X</span> LTP</a>
+              <a className="text-green-500">CE = {(volWeightedCall).toFixed(3)}</a>
+              <a className="text-red-600">PE = {(volWeightedPut).toFixed(3)}</a>
+            </li>
+          </ul>
+        </div>
+        <div className="dropdown dropdown-hover">
+          <label tabIndex={0} className="m-1 btn">
           Weighted Pcr = {weightedPCR}
           </label>
           <ul
             tabIndex={0}
-            className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 opacity-30"
+            className="p-2 shadow dropdown-content menu bg-base-100 rounded-box w-52 opacity-30"
           >
             <li className="text-sm ">
               <a> OI <span className="text-red-600">X</span> LTP</a>
@@ -118,7 +155,7 @@ const Table = ({ filtered, total }) => {
           </ul>
         </div>
       </div>
-      <table className="table table-compact w-full mt-6 ">
+      <table className="table w-full mt-6 table-compact ">
         {/* <!-- head --> */}
         <thead>
           <tr className="text-center">
@@ -126,10 +163,12 @@ const Table = ({ filtered, total }) => {
             <th>ExpiryDate</th>
             <th>CALL OI</th>
             <th>CALL ChangeInOI</th>
+            <th>CE V</th>
             <th>CALL Last TradedPrice</th>
             <th>StrikePrice</th>
             <th>Put OI</th>
             <th>PUT ChangeInOI</th>
+            <th>PE V</th>
             <th>PUT Last TradedPrice</th>
           </tr>
         </thead>
@@ -144,10 +183,12 @@ const Table = ({ filtered, total }) => {
                   <td>{put.PE?.expiryDate}</td>
                   <td>{put.CE?.openInterest}</td>
                   <td>{put.CE?.changeinOpenInterest} </td>
+                  <td>{put.CE?.totalTradedVolume} </td>
                   <td>{put.CE?.lastPrice}</td>
-                  <td>{put.PE?.strikePrice}</td>
+                  <td className="text-blue-300">{put.PE?.strikePrice}</td>
                   <td>{put.PE?.openInterest}</td>
                   <td>{put.PE?.changeinOpenInterest}</td>
+                  <td>{put.PE?.totalTradedVolume}</td>
                   <td>{put.PE?.lastPrice}</td>
                 </tr>
               </Fragment>
