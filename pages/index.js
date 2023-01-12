@@ -15,7 +15,7 @@ export default function Home() {
   return <Loader/>
   
 //  const records = data.records.data
- const filtered = data.filtered.data
+ const filtered = data.filtered.data === undefined ? <Loader/> : data.filtered.data
  const total = data.filtered
  
   return (

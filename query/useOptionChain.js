@@ -16,7 +16,7 @@ export const fetchData = async (value) => {
 export const useOptionChain = (value) => {
   return useQuery(["option-chain",value], () => fetchData(value),
   {
-    refetchInterval: 120000
+    refetchIntervalInBackground: 120000
   }
   );
 };

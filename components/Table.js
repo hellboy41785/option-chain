@@ -1,5 +1,8 @@
 import { Fragment, useState } from "react";
 import { useOptionChainStore } from "../query/useOptionChainStore";
+import StockChart from "../public/stockChart.svg";
+import Image from "next/image";
+import Link from "next/link";
 
 const Table = ({ filtered, total }) => {
   const contracts = useOptionChainStore((state) => state.contracts);
@@ -19,8 +22,10 @@ const Table = ({ filtered, total }) => {
 
   // Weighted Intra DayPcr
 
-  const weightCall = filtered?.map(
-    (item, index) => item.CE.changeinOpenInterest === undefined ? "" : item.CE.changeinOpenInterest * item.CE.lastPrice
+  const weightCall = filtered?.map((item, index) =>
+    item.CE.changeinOpenInterest === undefined
+      ? 1
+      : item.CE.changeinOpenInterest * item.CE.lastPrice
   );
 
   const weightCallData = weightCall.reduce((acc, current) => acc + current, 0);
@@ -56,28 +61,20 @@ const Table = ({ filtered, total }) => {
   const weightedPCR = (weightedPutData / weightedCallData).toFixed(2);
 
   //Volume Weighted PCR
-  
+
   const volCall = filtered?.map(
     (item, index) => item.CE.totalTradedVolume * item.CE.lastPrice
   );
-  
-  const volWeightedCall = volCall.reduce(
-    (acc, current) => acc + current,
-    0
-  );
+
+  const volWeightedCall = volCall.reduce((acc, current) => acc + current, 0);
   const volPut = filtered?.map(
     (item, index) => item.PE.totalTradedVolume * item.PE.lastPrice
   );
-  
-  const volWeightedPut = volPut.reduce(
-    (acc, current) => acc + current,
-    0
-  );
-  
-  const volWeightedPCR = (volWeightedPut/volWeightedCall).toFixed(2)
 
-  
-  
+  const volWeightedPut = volPut.reduce((acc, current) => acc + current, 0);
+
+  const volWeightedPCR = (volWeightedPut / volWeightedCall).toFixed(2);
+
   const handleChange = (event) => {
     event.preventDefault();
     addContracts(event.target.value);
@@ -86,73 +83,102 @@ const Table = ({ filtered, total }) => {
   let no = 0;
   return (
     <div className="p-2 overflow-x-auto">
-      <div className="space-x-3">
-        <select
-          className="w-full max-w-xs select select-accent"
-          onChange={handleChange}
-          value={contracts}
-        >
-          <option>NIFTY</option>
-          <option>BANKNIFTY</option>
-          <option>FINNIFTY</option>
-        </select>
-        <div className="dropdown dropdown-hover">
-          <label tabIndex={0} className="m-1 btn">
-          Intra DayPcr = {intraDayPCR}
-          </label>
-          <ul
-            tabIndex={0}
-            className="p-2 shadow dropdown-content menu bg-base-100 rounded-box w-52 opacity-30"
+      <div className="flex justify-between">
+        <div className="w-full">
+          <select
+            className="w-full max-w-xs select select-accent"
+            onChange={handleChange}
+            value={contracts}
           >
-            <li className="text-sm ">
-              <a>Change In OI</a>
-            </li>
-          </ul>
+            <option>NIFTY</option>
+            <option>BANKNIFTY</option>
+            {/* <option>FINNIFTY</option> */}
+          </select>
+          <div className="dropdown dropdown-hover">
+            <label tabIndex={0} className="m-1 btn">
+              Intra DayPcr = {intraDayPCR}
+            </label>
+            <ul
+              tabIndex={0}
+              className="p-2 shadow dropdown-content menu bg-base-100 rounded-box w-52 opacity-30"
+            >
+              <li className="text-sm ">
+                <a>Change In OI</a>
+              </li>
+            </ul>
+          </div>
+          <div className="dropdown dropdown-hover">
+            <label tabIndex={0} className="m-1 btn">
+              Weighted Intra DayPcr = {weightAge}
+            </label>
+            <ul
+              tabIndex={0}
+              className="p-2 shadow dropdown-content menu bg-base-100 rounded-box w-52 opacity-30"
+            >
+              <li className="text-sm ">
+                <a>
+                  Change In OI <span className="text-red-600">X</span> LTP
+                </a>
+                <a className="text-green-500">
+                  CE = {weightCallData.toFixed(3)}
+                </a>
+                <a className="text-red-600">PE = {weightPutData.toFixed(3)}</a>
+              </li>
+            </ul>
+          </div>
+          <div className="dropdown dropdown-hover">
+            <label tabIndex={0} className="m-1 btn">
+              Volume Weighted PCR = {volWeightedPCR}
+            </label>
+            <ul
+              tabIndex={0}
+              className="p-2 shadow dropdown-content menu bg-base-100 rounded-box w-52 opacity-30"
+            >
+              <li className="text-sm ">
+                <a>
+                  {" "}
+                  Volume <span className="text-red-600">X</span> LTP
+                </a>
+                <a className="text-green-500">
+                  CE = {volWeightedCall.toFixed(3)}
+                </a>
+                <a className="text-red-600">PE = {volWeightedPut.toFixed(3)}</a>
+              </li>
+            </ul>
+          </div>
+          <div className="dropdown dropdown-hover">
+            <label tabIndex={0} className="m-1 btn">
+              Weighted Pcr = {weightedPCR}
+            </label>
+            <ul
+              tabIndex={0}
+              className="p-2 shadow dropdown-content menu bg-base-100 rounded-box w-52 opacity-30"
+            >
+              <li className="text-sm ">
+                <a>
+                  {" "}
+                  OI <span className="text-red-600">X</span> LTP
+                </a>
+                <a className="text-green-500">
+                  CE = {weightedCallData.toFixed(3)}
+                </a>
+                <a className="text-red-600">
+                  PE = {weightedPutData.toFixed(3)}
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
-        <div className="dropdown dropdown-hover">
-          <label tabIndex={0} className="m-1 btn">
-          Weighted Intra DayPcr = {weightAge}
-          </label>
-          <ul
-            tabIndex={0}
-            className="p-2 shadow dropdown-content menu bg-base-100 rounded-box w-52 opacity-30"
-          >
-            <li className="text-sm ">
-              <a>Change In OI <span className="text-red-600">X</span>  LTP</a>
-              <a className="text-green-500">CE = {(weightCallData).toFixed(3)}</a>
-              <a className="text-red-600">PE = {(weightPutData).toFixed(3)}</a>
-            </li>
-          </ul>
-        </div>
-        <div className="dropdown dropdown-hover">
-          <label tabIndex={0} className="m-1 btn">
-          Volume Weighted PCR = {volWeightedPCR}
-          </label>
-          <ul
-            tabIndex={0}
-            className="p-2 shadow dropdown-content menu bg-base-100 rounded-box w-52 opacity-30"
-          >
-            <li className="text-sm ">
-              <a> Volume <span className="text-red-600">X</span> LTP</a>
-              <a className="text-green-500">CE = {(volWeightedCall).toFixed(3)}</a>
-              <a className="text-red-600">PE = {(volWeightedPut).toFixed(3)}</a>
-            </li>
-          </ul>
-        </div>
-        <div className="dropdown dropdown-hover">
-          <label tabIndex={0} className="m-1 btn">
-          Weighted Pcr = {weightedPCR}
-          </label>
-          <ul
-            tabIndex={0}
-            className="p-2 shadow dropdown-content menu bg-base-100 rounded-box w-52 opacity-30"
-          >
-            <li className="text-sm ">
-              <a> OI <span className="text-red-600">X</span> LTP</a>
-              <a className="text-green-500">CE = {(weightedCallData).toFixed(3)}</a>
-              <a className="text-red-600">PE = {(weightedPutData).toFixed(3)}</a>
-            </li>
-          </ul>
+        <div>
+          <Link href={`/charts`}>
+            <Image
+              className=""
+              src={StockChart}
+              width={50}
+              height={20}
+              alt="charts"
+            />
+          </Link>
         </div>
       </div>
       <table className="table w-full mt-6 table-compact ">
@@ -199,6 +225,7 @@ const Table = ({ filtered, total }) => {
             <td></td>
             <td>{total?.CE?.totOI}</td>
             <td>{callChange}</td>
+            <td></td>
             <td></td>
             <td></td>
             <td>{total?.PE?.totOI}</td>
