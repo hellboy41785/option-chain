@@ -165,7 +165,7 @@ const Charts = () => {
           options={options}
           series={series}
           type="line"
-          width={1500}
+          width={1200}
           height={650}
         />
       </div>
