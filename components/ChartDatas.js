@@ -90,38 +90,47 @@ const ChartData = ({ chart, name }) => {
     chart: {
       id: "stock data",
     },
+    dataLabels: {
+      enabled: false
+    },
     stroke: {
       width: 3,
     },
     xaxis: {
-      tickAmount: 0,
-      tickInterval: 0.5,
+  
+      labels: {
+        rotate: 0
+      },
+     
+      
     },
     yaxis: {
       forceNiceScale: true,
       decimalsInFloat: 1,
-      // tickAmount: 3,
+      tickAmount: 8,
     },
   };
 
   const series = [
-    {
-      name: "IP",
-      data: intraDa,
-    },
-    {
-      name: "WIP",
-      data: weightedIntra,
-    },
+    // {
+    //   name: "IP",
+    //   data: intraDa,
+    // },
+    // {
+    //   name: "WIP",
+    //   data: weightedIntra,
+    // },
     {
       name: "VWP",
       data: volume,
     },
-    {
-      name: "WP",
-      data: weightedPCR,
-    },
+    // {
+    //   name: "WP",
+    //   data: weightedPCR,
+    // },
   ];
+
+
   return (
     <Charts
       options={options}

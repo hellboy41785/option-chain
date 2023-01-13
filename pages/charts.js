@@ -44,7 +44,7 @@ const Charts = () => {
           {/* <option>FINNIFTY</option> */}
         </select>
       </div>
-      <div className="flex justify-center  px-20  w-full h-[92%] ">
+      <div className="flex justify-center  px-20  w-full h-[85%] ">
         <div className=" w-full h-full  ">
           <ChartData chart={chart} name={contracts} />
         </div>
