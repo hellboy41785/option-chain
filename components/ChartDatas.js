@@ -100,7 +100,7 @@ const ChartData = ({ chart, name }) => {
     yaxis: {
       forceNiceScale: true,
       decimalsInFloat: 1,
-      tickAmount: 8,
+      // tickAmount: 3,
     },
   };
 
@@ -127,8 +127,8 @@ const ChartData = ({ chart, name }) => {
       options={options}
       series={series}
       type="line"
-      width={1000}
-      height={650}
+      width={`100%`}
+      height={`100%`}
     />
   );
 };

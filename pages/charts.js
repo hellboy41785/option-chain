@@ -1,11 +1,10 @@
 import { useOptionChainStore } from "../query/useOptionChainStore";
-import { useStockDataQuery} from "../query/useStockData";
+import { useStockDataQuery } from "../query/useStockData";
 import goBack from "../public/goBack.png";
 import Image from "next/image";
 import Link from "next/link";
 import Loader from "../components/Loader";
 import ChartData from "../components/ChartDatas";
-
 
 const Charts = () => {
   const contracts = useOptionChainStore((state) => state.contracts);
@@ -24,7 +23,7 @@ const Charts = () => {
 
   // console.log(chart);
   return (
-    <div className="p-3 ">
+    <div className="p-3 h-screen ">
       <div className="flex justify-between ">
         <Link href={`/`}>
           <Image
@@ -45,8 +44,10 @@ const Charts = () => {
           {/* <option>FINNIFTY</option> */}
         </select>
       </div>
-      <div className="flex justify-center items-center px-20">
-        <ChartData chart={chart} name={contracts}/>
+      <div className="flex justify-center  px-20  w-full h-[92%] ">
+        <div className=" w-full h-full  ">
+          <ChartData chart={chart} name={contracts} />
+        </div>
       </div>
     </div>
   );
