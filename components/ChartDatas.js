@@ -50,14 +50,7 @@ const ChartData = ({ chart, name }) => {
         fontSize: "24px",
       },
     },
-    tooltip: {
 
-      format: {
-        value: function({value}) {
-          parseFloat(value).toFixed(2);
-        }
-      }
-    },
     stroke: {
       curve: "smooth",
     },
@@ -116,7 +109,7 @@ const ChartData = ({ chart, name }) => {
     // },
   ];
 
-  console.log(volume)
+  console.log(volume);
 
   return (
     <Charts
