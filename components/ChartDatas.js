@@ -14,56 +14,32 @@ const Charts = dynamic(() => import("react-apexcharts"), { ssr: false });
 const ChartData = ({ chart, name }) => {
   const formatData = (data) => {
     return data.t.map((el, index) => {
-      const date = new Date(el * 1000);
       return {
-        x: date.toLocaleString("en-us", {
-          day: "numeric",
-          month: "short",
-          hour: "2-digit",
-          minute: "2-digit",
-        }),
+        x: el,
         y: data.i[index],
       };
     });
   };
   const formatData1 = (data) => {
     return data.t.map((el, index) => {
-      const date = new Date(el * 1000);
       return {
-        x: date.toLocaleString("en-us", {
-          day: "numeric",
-          month: "short",
-          hour: "2-digit",
-          minute: "2-digit",
-        }),
+        x: el,
         y: data.w[index],
       };
     });
   };
   const formatData2 = (data) => {
     return data.t.map((el, index) => {
-      const date = new Date(el * 1000);
       return {
-        x: date.toLocaleString("en-us", {
-          day: "numeric",
-          month: "short",
-          hour: "2-digit",
-          minute: "2-digit",
-        }),
+        x: el,
         y: data.v[index],
       };
     });
   };
   const formatData3 = (data) => {
     return data.t.map((el, index) => {
-      const date = new Date(el * 1000);
       return {
-        x: date.toLocaleString("en-us", {
-          day: "numeric",
-          month: "short",
-          hour: "2-digit",
-          minute: "2-digit",
-        }),
+        x: el,
         y: data.wp[index],
       };
     });
@@ -91,23 +67,34 @@ const ChartData = ({ chart, name }) => {
       id: "stock data",
     },
     dataLabels: {
-      enabled: false
+      enabled: false,
     },
     stroke: {
       width: 3,
     },
     xaxis: {
-  
+      type: "datetime",
       labels: {
-        rotate: 0
+        rotate: 0,
+
+        formatter: function (val) {
+          const date = new Date(val * 1000);
+
+          return date.toLocaleString("en-us", {
+            day: "numeric",
+            month: "short",
+            hour: "2-digit",
+            minute: "2-digit",
+          });
+        },
       },
-     
-      
     },
     yaxis: {
-      forceNiceScale: true,
       decimalsInFloat: 1,
-      tickAmount: 8,
+      tickAmount: 5,
+      min: 0,
+      max: 2.5,
+      tickPlacement: "between",
     },
   };
 
@@ -129,7 +116,6 @@ const ChartData = ({ chart, name }) => {
     //   data: weightedPCR,
     // },
   ];
-
 
   return (
     <Charts
