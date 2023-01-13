@@ -1,13 +1,3 @@
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-} from "chart.js";
 import dynamic from "next/dynamic";
 const Charts = dynamic(() => import("react-apexcharts"), { ssr: false });
 
@@ -60,6 +50,14 @@ const ChartData = ({ chart, name }) => {
         fontSize: "24px",
       },
     },
+    tooltip: {
+
+      format: {
+        value: function({value}) {
+          parseFloat(value).toFixed(2);
+        }
+      }
+    },
     stroke: {
       curve: "smooth",
     },
@@ -90,11 +88,12 @@ const ChartData = ({ chart, name }) => {
       },
     },
     yaxis: {
-      decimalsInFloat: 1,
+      decimalsInFloat: 2,
       tickAmount: 5,
       min: 0,
       max: 2.5,
       tickPlacement: "between",
+      multiYaxis: true,
     },
   };
 
@@ -116,6 +115,8 @@ const ChartData = ({ chart, name }) => {
     //   data: weightedPCR,
     // },
   ];
+
+  console.log(volume)
 
   return (
     <Charts
