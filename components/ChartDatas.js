@@ -67,7 +67,6 @@ const ChartData = ({ chart, name }) => {
       type: "datetime",
       labels: {
         rotate: 0,
-
         formatter: function (val) {
           const date = new Date(val * 1000);
 
@@ -82,9 +81,9 @@ const ChartData = ({ chart, name }) => {
     },
     yaxis: {
       decimalsInFloat: 2,
-      tickAmount: 5,
+      tickAmount: 10,
       min: 0,
-      max: 2.5,
+      max: 8,
       tickPlacement: "between",
       multiYaxis: true,
     },
