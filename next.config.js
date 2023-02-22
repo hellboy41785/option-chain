@@ -4,6 +4,9 @@ const nextConfig = {
   images: {
     domains: ['loading.io'],
   },
+  env:{
+    CORS_URL:process.env.CORS_URL
+  }
 }
 
 module.exports = nextConfig
