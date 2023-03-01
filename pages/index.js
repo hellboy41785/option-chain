@@ -5,14 +5,17 @@ import Table from '../components/Table'
 import { useOptionChainStore } from '../query/useOptionChainStore';
 import Head from 'next/head';
 import Loader from '../components/Loader';
+import Error from '../components/Error';
 
 export default function Home() {
   const contracts = useOptionChainStore((state) => state.contracts);
   
-  const {data,isLoading} = useOptionChain(contracts)
+  const {data,isLoading,isError} = useOptionChain(contracts)
   
   if(isLoading)
   return <Loader/>
+  if(isError)
+  return <Error/>
   
 //  const records = data.records.data
  const filtered = data.filtered.data === undefined ? <Loader/> : data.filtered.data
