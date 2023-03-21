@@ -81,9 +81,7 @@ const ChartData = ({ chart, name }) => {
     },
     yaxis: {
       decimalsInFloat: 2,
-      tickAmount: 10,
-      min: 0,
-      max: 8,
+      tickAmount: 14,
       tickPlacement: "between",
       multiYaxis: true,
     },
@@ -107,8 +105,6 @@ const ChartData = ({ chart, name }) => {
     //   data: weightedPCR,
     // },
   ];
-
-  console.log(volume);
 
   return (
     <Charts
