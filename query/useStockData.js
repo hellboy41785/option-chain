@@ -3,7 +3,7 @@ import { useQuery } from "react-query";
 
 export const fetchStockData = async (value) => {
   const response = await axios.get(
-    `https://stockapi.onrender.com/api/v1/${value}`
+    `https://stockapi-production-cd1f.up.railway.app/api/v1/${value}`
   );
   const data = response.data;
   return data;
