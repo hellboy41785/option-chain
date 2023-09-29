@@ -88,22 +88,22 @@ const ChartData = ({ chart, name }) => {
   };
 
   const series = [
-    // {
-    //   name: "IP",
-    //   data: intraDa,
-    // },
-    // {
-    //   name: "WIP",
-    //   data: weightedIntra,
-    // },
+    {
+      name: "IP",
+      data: intraDa,
+    },
+    {
+      name: "WIP",
+      data: weightedIntra,
+    },
     {
       name: "VWP",
       data: volume,
     },
-    // {
-    //   name: "WP",
-    //   data: weightedPCR,
-    // },
+    {
+      name: "WP",
+      data: weightedPCR,
+    },
   ];
 
   return (
