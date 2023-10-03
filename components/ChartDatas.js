@@ -3,20 +3,36 @@ const Charts = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 const ChartData = ({ chart, name }) => {
   const formatData = (data) => {
-    return data.t.map((el, index) => {
-      return {
-        x: el,
-        y: data.i[index],
-      };
-    });
+    return data.t
+      .map((el, index) => {
+        const yValue = data.i[index];
+        if (!isNaN(yValue)) {
+          // Check if yValue is not NaN
+          return {
+            x: el,
+            y: yValue,
+          };
+        } else {
+          return null; // Skip this data point by returning null
+        }
+      })
+      .filter((point) => point !== null); // Filter out the null values
   };
   const formatData1 = (data) => {
-    return data.t.map((el, index) => {
-      return {
-        x: el,
-        y: data.w[index],
-      };
-    });
+    return data.t
+      .map((el, index) => {
+        const yValue = data.w[index];
+        if (!isNaN(yValue)) {
+          // Check if yValue is not NaN
+          return {
+            x: el,
+            y: yValue,
+          };
+        } else {
+          return null; // Skip this data point by returning null
+        }
+      })
+      .filter((point) => point !== null);
   };
   const formatData2 = (data) => {
     return data.t.map((el, index) => {
