@@ -6,7 +6,7 @@ const ChartData = ({ chart, name }) => {
     return data.t
       .map((el, index) => {
         const yValue = data.i[index];
-        if (!isNaN(yValue)) {
+        if (!isNaN(yValue) && yValue >= -4 && yValue <= 4) {
           // Check if yValue is not NaN
           return {
             x: el,
@@ -22,7 +22,7 @@ const ChartData = ({ chart, name }) => {
     return data.t
       .map((el, index) => {
         const yValue = data.w[index];
-        if (!isNaN(yValue)) {
+        if (!isNaN(yValue ) && yValue >= -4 && yValue <= 4) {
           // Check if yValue is not NaN
           return {
             x: el,
@@ -35,20 +35,36 @@ const ChartData = ({ chart, name }) => {
       .filter((point) => point !== null);
   };
   const formatData2 = (data) => {
-    return data.t.map((el, index) => {
-      return {
-        x: el,
-        y: data.v[index],
-      };
-    });
+    return data.t
+    .map((el, index) => {
+      const yValue = data.v[index];
+      if (!isNaN(yValue ) && yValue >= -4 && yValue <= 4) {
+        // Check if yValue is not NaN
+        return {
+          x: el,
+          y: yValue,
+        };
+      } else {
+        return null; // Skip this data point by returning null
+      }
+    })
+    .filter((point) => point !== null);
   };
   const formatData3 = (data) => {
-    return data.t.map((el, index) => {
-      return {
-        x: el,
-        y: data.wp[index],
-      };
-    });
+    return data.t
+    .map((el, index) => {
+      const yValue = data.wp[index];
+      if (!isNaN(yValue ) && yValue >= -4 && yValue <= 4) {
+        // Check if yValue is not NaN
+        return {
+          x: el,
+          y: yValue,
+        };
+      } else {
+        return null; // Skip this data point by returning null
+      }
+    })
+    .filter((point) => point !== null);
   };
 
   const myChartData = {
@@ -58,6 +74,8 @@ const ChartData = ({ chart, name }) => {
     weightedPCR: formatData3(chart),
   };
   const { intraDa, weightedIntra, volume, weightedPCR } = myChartData;
+
+ 
   const options = {
     title: {
       text: name,
@@ -97,9 +115,11 @@ const ChartData = ({ chart, name }) => {
     },
     yaxis: {
       decimalsInFloat: 2,
-      tickAmount: 14,
+      tickAmount: 20,
       tickPlacement: "between",
       multiYaxis: true,
+      min: -5,
+      max: 5
     },
   };
 
