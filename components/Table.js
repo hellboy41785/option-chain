@@ -23,7 +23,7 @@ const Table = ({ filtered, total }) => {
   // Weighted Intra DayPcr
 
   const weightCall = filtered?.map((item, index) =>
-    item.CE.changeinOpenInterest === undefined
+    item?.CE?.changeinOpenInterest === undefined
       ? 1
       : item.CE.changeinOpenInterest * item.CE.lastPrice
   );
@@ -31,7 +31,7 @@ const Table = ({ filtered, total }) => {
   const weightCallData = weightCall.reduce((acc, current) => acc + current, 0);
 
   const weightPut = filtered?.map(
-    (item, index) => item.PE.changeinOpenInterest * item.PE.lastPrice
+    (item, index) => item?.PE?.changeinOpenInterest * item?.PE?.lastPrice
   );
 
   const weightPutData = weightPut.reduce((acc, current) => acc + current, 0);
@@ -41,7 +41,7 @@ const Table = ({ filtered, total }) => {
   //Weighted PCR
 
   const weightedCall = filtered?.map(
-    (item, index) => item.CE.openInterest * item.CE.lastPrice
+    (item, index) => item?.CE?.openInterest * item?.CE?.lastPrice
   );
 
   const weightedCallData = weightedCall.reduce(
@@ -50,7 +50,7 @@ const Table = ({ filtered, total }) => {
   );
 
   const weightedPut = filtered?.map(
-    (item, index) => item.PE.openInterest * item.PE.lastPrice
+    (item, index) => item?.PE?.openInterest * item?.PE?.lastPrice
   );
 
   const weightedPutData = weightedPut.reduce(
@@ -63,12 +63,12 @@ const Table = ({ filtered, total }) => {
   //Volume Weighted PCR
 
   const volCall = filtered?.map(
-    (item, index) => item.CE.totalTradedVolume * item.CE.lastPrice
+    (item, index) => item?.CE?.totalTradedVolume * item?.CE?.lastPrice
   );
 
   const volWeightedCall = volCall.reduce((acc, current) => acc + current, 0);
   const volPut = filtered?.map(
-    (item, index) => item.PE.totalTradedVolume * item.PE.lastPrice
+    (item, index) => item?.PE?.totalTradedVolume * item?.PE?.lastPrice
   );
 
   const volWeightedPut = volPut.reduce((acc, current) => acc + current, 0);
